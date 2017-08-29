@@ -1,0 +1,38 @@
+<!-- <div class="centered">
+  <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <div class="form-group">
+
+      <div class="row">
+        <div class="col-md-offset-5 col-sm-offset-4 col-md-2 col-sm-4">
+          <label for="inpUser">UserName</label>
+          <input id="inpUser" name="user" type="text" class="form-control" autofocus ngModel required #userCtr="ngModel">
+          <span class="help-block" *ngIf="userCtr.invalid && userCtr.touched">Please enter a username!</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-offset-5 col-sm-offset-4 col-md-2 col-sm-4">
+          <label for="inpPassword">Password</label>
+          <input id="inpPassword" name="pwd" type="password" class="form-control" ngModel>
+        </div>
+      </div>
+      <br>
+      <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Log In</button>
+    </div>
+  </form>
+</div> -->
+
+<form (ngSubmit)="onSubmit(form)" #form="ngForm" autocomplete="off">
+<h2 class="title">Login</h2>
+  <div class="form-group">
+
+    <md-input-container class="example-full-width">
+      <input name="inpUserName" mdInput placeholder="Username" ngModel>
+    </md-input-container>
+
+    <md-input-container class="example-full-width">
+      <input name="inpPassword" type="password" mdInput placeholder="Password" ngModel>
+    </md-input-container>
+
+  </div>
+  <button md-raised-button type="submit" [disabled]="form.invalid">Log In</button>
+</form>

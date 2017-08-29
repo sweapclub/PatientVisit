@@ -1,0 +1,55 @@
+<!-- <h1 md-dialog-title>Dialog</h1> -->
+<!-- <div md-dialog-content>What would you like to do?</div>
+<div md-dialog-actions>
+   <button md-button md-dialog-close="Option 1">Option 1</button>
+  <button md-button md-dialog-close="Option 2">Option 2</button>
+</div> -->
+<section class="mat-typography">
+  <form (ngSubmit)="callBackObject(form)" #form="ngForm" autocomplete="off">
+    <h1 md-dialog-title>Insurance Detail </h1>
+    <p caption>Hello</p>
+    <div md-dialog-content>
+      <div class="form-group">
+        <md-input-container style="width:100%;">
+          <input name="name" mdInput placeholder="Name" required [ngModel]="data?.insuranceName">
+        </md-input-container>
+        <md-input-container style="width:100%;">
+          <input name="nationality" mdInput placeholder="Nationality" [ngModel]="data?.insuranceNationality">
+        </md-input-container>
+        <md-input-container style="width:100%;">
+          <input name="email" mdInput placeholder="E-mail" [ngModel]="data?.insuranceEmail">
+        </md-input-container>
+        <md-input-container style="width:100%;">
+          <input name="telephone" mdInput placeholder="Telephone" [ngModel]="data?.insuranceTelephone">
+        </md-input-container>
+        <md-input-container style="width:100%;">
+          <textarea name="description" #description maxlength="250" style="resize: height;" mdInput placeholder="Description" [ngModel]="data?.insuranceDescription"></textarea>
+        </md-input-container>
+        <md-hint>Maximum Length : {{description.value.length}} / 250</md-hint>
+      </div>
+    </div>
+    <div md-dialog-actions>
+      <button md-raised-button type="submit" [disabled]="form.invalid">Submit</button>
+      <span style="flex: 1 1 auto;"></span>
+      <button md-raised-button (click)='dialogRef.close(null)'>Cancel</button>
+    </div>
+  </form>
+</section>
+
+<!-- <section class="mat-typography">
+  <h1 md-dialog-title>Dialog</h1>
+  <div md-dialog-content>What would you like to do?</div>
+  <div md-dialog-actions>
+    <button md-button md-dialog-close="Option 1">Option 1</button>
+    <button md-button md-dialog-close="Option 2">Option 2</button>
+
+        <md-input-container class="example-full-width">
+      <input name="inpUserName" mdInput placeholder="Username" ngModel>
+    </md-input-container>
+
+    <md-input-container class="example-full-width">
+      <input name="inpPassword" type="password" mdInput placeholder="Password" ngModel>
+    </md-input-container>
+  </div>
+
+</section> -->

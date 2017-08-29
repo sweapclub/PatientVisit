@@ -1,0 +1,64 @@
+<h2 class="title">Assign work to Interpreter</h2>
+<p class="caption">This is page for add work to intrerpreter !</p>
+
+
+<div class=" container mat-elevation-z8">
+  <!-- <div class=" header">
+    <md-input-container floatPlaceholder="never">
+      <input mdInput #filter placeholder="Filter Insurance">
+    </md-input-container>
+  </div> -->
+
+  <md-table #table [dataSource]="dataSource">
+
+    <ng-container cdkColumnDef="patientHN">
+      <md-header-cell *cdkHeaderCellDef> HN </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.patientHN}} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="patientName">
+      <md-header-cell *cdkHeaderCellDef> Name </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.patientName}} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="patientAge">
+      <md-header-cell *cdkHeaderCellDef> Age </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.patientAge}} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="nationality">
+      <md-header-cell *cdkHeaderCellDef> Nationality </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.nationality}} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="admitWard">
+      <md-header-cell *cdkHeaderCellDef> Ward </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.admitWard}} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="admitRoom">
+      <md-header-cell *cdkHeaderCellDef> Room </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.admitRoom}} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="interpreter">
+      <md-header-cell *cdkHeaderCellDef> Interpreter </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.interpreter}} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="Edit">
+      <md-header-cell *cdkHeaderCellDef> Manage </md-header-cell>
+      <md-cell *cdkCellDef="let row"> <button md-raised-button> <md-icon>library_add</md-icon> </button> </md-cell>
+    </ng-container>
+
+    <!-- <ng-container cdkColumnDef="Manage">
+        <md-header-cell *cdkHeaderCellDef> Manage </md-header-cell>
+        <md-cell *cdkCellDef="let row">
+          <button md-raised-button (click)="openEditDialog(row)"><md-icon>edit</md-icon>Edit</button>
+        </md-cell>
+      </ng-container> -->
+
+    <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+  </md-table>
+</div>

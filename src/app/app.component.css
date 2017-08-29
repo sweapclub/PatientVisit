@@ -1,0 +1,40 @@
+.pushRight {
+  flex: 1 1 auto;
+}
+
+.sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidenav {
+  padding-top: 64px;
+}
+
+.sidenav-container{
+  background-color:transparent;
+  height:100vh;
+}
+
+.mat-elevation-z5 {
+   /* position: relative; */
+   z-index: 2;
+   position: fixed;
+}
+
+.activeBtnRouter {
+  background-color:#9E9E9E;
+}
+
+a.mat-button {
+  width:100%;
+  padding-right:100px;
+  padding-left:100px;
+}
+a.md-raised-button {
+  width:100%;
+  padding-right:100px;
+  padding-left:100px;
+}

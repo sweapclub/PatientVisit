@@ -1,0 +1,56 @@
+<p class="caption">
+  This is page for import and chose insurance for patient ...
+</p>
+
+<!-- <button md-raised-button (click)="importPatient()">Update Patient's Insurance </button> -->
+
+<br>
+<br>
+<div class="container mat-elevation-z8">
+  <!-- <div class="header">
+
+  </div> -->
+
+   <md-table #table [dataSource]="dataSource">
+
+    <ng-container cdkColumnDef="HN">
+      <md-header-cell *cdkHeaderCellDef> HN </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.patientHN}} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="FullName">
+      <md-header-cell *cdkHeaderCellDef> Full Name </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.patientName}} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="Age">
+      <md-header-cell *cdkHeaderCellDef> Age </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.patientAge}} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="Nationality">
+      <md-header-cell *cdkHeaderCellDef> Nationality </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.nationality}} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="Insurance">
+      <md-header-cell *cdkHeaderCellDef> Insurance </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.insuranceName}} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="EditInsurance">
+      <md-header-cell *cdkHeaderCellDef> Change Insurance </md-header-cell>
+      <md-cell *cdkCellDef="let row; let i = index">
+        <button md-raised-button (click)='openInsuranceDialog({
+          index: i,
+          insuranceName: row.insuranceName,
+          patientHN: row.patientHN,
+          alreadyInserted: row.alreadyInserted
+        })'><md-icon>edit</md-icon></button>
+      </md-cell>
+    </ng-container>
+
+    <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+  </md-table>
+</div>
