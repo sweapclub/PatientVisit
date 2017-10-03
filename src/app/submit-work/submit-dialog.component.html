@@ -1,0 +1,39 @@
+<section class="mat-typography">
+  <div md-dialog-title>
+    <h1>Finish Work</h1>
+  </div>
+  <form (ngSubmit)="updateWork(form)" #form="ngForm" autocomplete="off">
+    <div md-dialog-content class="mainDialog">
+      <md-form-field style="width:100%;">
+        <textarea mdInput #visa name="visaInformation" auto-focus="true" rows="3" minlength="250"  placeholder="Add Visa Information"
+          style="resize: none;overflow:hidden;" [(ngModel)]="visaInformation"></textarea>
+        <md-hint align="end">{{visa.value.length}} / 250</md-hint>
+      </md-form-field>
+      <md-form-field style="width:100%;">
+        <textarea mdInput #sop name="statusOfPatient" auto-focus="true" rows="3" minlength="250"placeholder="Add Status of Patient"
+          style="resize: none;overflow:hidden;" [(ngModel)]="statusOfPatient"></textarea>
+        <md-hint align="end">{{sop.value.length}} / 250</md-hint>
+      </md-form-field>
+      <md-form-field style="width:100%;">
+        <textarea mdInput #com name="complaint" auto-focus="true" rows="3" minlength="250" placeholder="Add Complaint of Patient"
+          style="resize: none;overflow:hidden;" [(ngModel)]="complaint"></textarea>
+        <md-hint align="end">{{com.value.length}} / 250</md-hint>
+      </md-form-field>
+      <md-form-field style="width:100%;">
+        <textarea mdInput #req name="request" auto-focus="true" rows="3" minlength="250"  placeholder="Add Request of Patient"
+          style="resize: none;overflow:hidden;" [(ngModel)]="request"></textarea>
+        <md-hint align="end">{{req.value.length}} / 250</md-hint>
+      </md-form-field>
+    </div>
+    <section class="radio-section">
+      <!-- <md-checkbox  [(ngModel)]="checked">Checked</md-checkbox> -->
+      <md-checkbox class="radio-margin" name="reportFlg" [(ngModel)]="reportManager" >Finish yet ?</md-checkbox>
+    </section>
+
+    <div md-dialog-actions>
+      <button md-raised-button type="submit" color="primary">Submit</button>
+      <span style="flex: 1 1 auto;"></span>
+      <button md-raised-button type="button" (click)='dialogRef.close()'>Cancel</button>
+    </div>
+  </form>
+</section>

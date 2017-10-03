@@ -1,0 +1,30 @@
+<section class="mat-typography">
+  <div md-dialog-title>
+    <md-input-container style="width:400px;">
+      <input mdInput (keyup)="filterInterpreter($event.target.value)" placeholder="Filter Interpreter" ngModel>
+    </md-input-container>
+  </div>
+
+  <div md-dialog-content class="mainDialog" style="height:70vh;">
+    <div class="dialogTable">
+      <table>
+        <tr *ngFor="let interpreter of interpreterFilter">
+          <td width="100%">
+            {{interpreter.FullName}}
+            <span class="numberCircle">{{interpreter.workAmount}}</span>
+          </td>
+          <td nowarp>
+            <button md-raised-button (click)='selectedInterpreter(interpreter)'><md-icon>edit</md-icon></button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div md-dialog-actions>
+    <!-- <button md-raised-button type="submit">Submit</button> -->
+    <span style="flex: 1 1 auto;"></span>
+    <button md-raised-button type="button" (click)='dialogRef.close()'>Cancel</button>
+  </div>
+  <!-- </form> -->
+
+</section>

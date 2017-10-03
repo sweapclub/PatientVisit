@@ -22,6 +22,7 @@
    /* position: relative; */
    z-index: 2;
    position: fixed;
+   height:64px;;
 }
 
 .activeBtnRouter {
@@ -38,3 +39,10 @@ a.md-raised-button {
   padding-right:100px;
   padding-left:100px;
 }
+
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+

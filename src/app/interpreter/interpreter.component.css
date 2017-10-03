@@ -15,16 +15,25 @@
   justify-content: space-between;
 }
 
-.mat-input-container {
-  font-size: 14px;
-  flex-grow: 1;
-  margin-left: 32px;
+
+
+
+table{
+  width:100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: 1px solid #ddd;
+  border-collapse: collapse;
 }
-
-.mat-table {
-  overflow: auto;
+th{
+  padding:10px;
+  background-color:#673ab7;
+  color:rgba(255,255,255,.87);
+  text-align:left;
 }
-
-
-
-
+td {
+    border-top: 1px solid #ddd;
+    padding:10px;
+}
+tr:hover{
+  background-color:#E0E0E0;
+}

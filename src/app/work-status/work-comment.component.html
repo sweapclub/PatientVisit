@@ -1,0 +1,27 @@
+<section class="mat-typography">
+  <div md-dialog-title>
+    <h1>Comment from Interpreter</h1>
+  </div>
+  <div md-dialog-content class="mainDialog">
+    <div *ngFor="let comment of workComment">
+      <md-card *ngIf="comment.finishFlg">
+        <md-card-header>
+          <md-icon color="primary">comment</md-icon>
+          <p>Date: {{comment.assignDate | date : 'yyyy-MM-dd'}}</p>
+        </md-card-header>
+        <md-card-content>
+          <p>Visa : {{comment.visaInformation}}
+            <br> Status : {{comment.statusOfPatient}}
+            <br> Complaint : {{comment.complaint}}
+            <br> Request : {{comment.request}}
+          </p>
+          <p class="caption" align="right">by : {{comment.interpreterName}}</p>
+        </md-card-content>
+      </md-card>
+    </div>
+  </div>
+  <div md-dialog-actions>
+    <span style="flex: 1 1 auto;"></span>
+    <button md-raised-button type="button" (click)='dialogRef.close()'>Close</button>
+  </div>
+</section>

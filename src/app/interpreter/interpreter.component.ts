@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { AppService } from '../app-service.service';
-import { ServiceDataSource, ServiceDatabase } from '../app-service.service';
+import { DbService } from '../db-service.service';
+import { InterpreterStatus } from '../model/interpreterStatus';
 
 @Component({
   selector: 'app-interpreter',
@@ -10,35 +10,23 @@ import { ServiceDataSource, ServiceDatabase } from '../app-service.service';
   styleUrls: ['./interpreter.component.css']
 })
 export class InterpreterComponent implements OnInit, OnDestroy {
-  displayedColumns = ['FullName', 'Language', 'Status'];
-  dataSource: ServiceDataSource | null;
-  @ViewChild('filter') filter: ElementRef;
-  subscription;
 
+  subscription;
+  interpreters: InterpreterStatus[];
   objInterpreter;
 
-  constructor(private appService: AppService) {
-    this.objInterpreter = this.appService.getInterpreterStatusTable();
-
-    // console.log(this.objInterpreter);
-    // this.dataSource = new ServiceDataSource(new ServiceDatabase(this.objInterpreter));
-    // this.dataSource = this.appService.getInterpreterStatus();
+  constructor(private dbService: DbService) {
   }
 
   ngOnInit() {
-    this.subscription = this.appService.qrySuccess.subscribe(
-      () => {
-        this.dataSource = this.appService.dataSource;
-        Observable.fromEvent(this.filter.nativeElement, 'keyup')
-          .debounceTime(150)
-          .distinctUntilChanged()
-          .subscribe(() => {
-            if (!this.dataSource) { return; }
-            this.dataSource.filter = this.filter.nativeElement.value;
-          });
+
+    this.subscription = this.dbService.getUserInterpreterTable().subscribe(data => {
+      if (data.length !== 0) {
+        this.interpreters = data;
       }
-    );
+    })
   }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

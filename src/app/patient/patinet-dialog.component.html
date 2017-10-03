@@ -1,49 +1,20 @@
-
 <section class="mat-typography">
-  <!-- <form (ngSubmit)="callBackObject(form)" #form="ngForm" autocomplete="off"> -->
-  <h1 md-dialog-title>Select Insurance </h1>
-  <div class=" header">
-      <md-input-container floatPlaceholder="never">
-        <input mdInput #filter placeholder="Filter Insurance">
-      </md-input-container>
-    </div>
-  <div md-dialog-content>
 
-    <!--
-      <md-select placeholder="Insurance Company" ngModel name="insuranceCompany" style="width:450px;">
-        <md-option [value]=''></md-option>
-        <md-option *ngFor="let insurance of insuranceCompany" [value]="({insuranceID: insurance.insuranceID, insuranceName: insurance.insuranceName})">
-          {{insurance.insuranceName}}
-        </md-option>
-      </md-select> -->
+  <md-input-container style="width:600px;">
+    <input mdInput (keyup)="filterStates($event.target.value)" placeholder="Filter Insurance" ngModel>
+  </md-input-container>
 
+  <div class="dialogTable">
+    <table>
 
-    <div class=" container mat-elevation-z8">
+      <tr *ngFor="let insurance of insuranceFilter">
+        <td width="100%">{{insurance.ins_name}}</td>
+        <td nowarp>
+          <button md-raised-button (click)='selectedInsurance(insurance)'><md-icon>edit</md-icon></button>
+        </td>
+      </tr>
 
-
-      <md-table #table [dataSource]="dataSource">
-
-        <ng-container cdkColumnDef="Name">
-          <md-header-cell *cdkHeaderCellDef> Name </md-header-cell>
-          <md-cell *cdkCellDef="let row"> {{row.ins_name}} </md-cell>
-        </ng-container>
-
-        <ng-container cdkColumnDef="Nationality">
-          <md-header-cell *cdkHeaderCellDef> Nationality </md-header-cell>
-          <md-cell *cdkCellDef="let row"> {{row.ins_branch_region}} </md-cell>
-        </ng-container>
-
-        <ng-container cdkColumnDef="Selected">
-          <md-header-cell *cdkHeaderCellDef> Change Insurance </md-header-cell>
-          <md-cell *cdkCellDef="let row; let i = index">
-            <button md-raised-button (click)='selectedInsurance(row)'><md-icon>edit</md-icon></button>
-          </md-cell>
-        </ng-container>
-
-        <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
-        <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
-      </md-table>
-    </div>
+    </table>
 
   </div>
   <div md-dialog-actions>

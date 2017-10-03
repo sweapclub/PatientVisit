@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Inject } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { CdkTableModule } from '@angular/cdk';
+import { DatePipe } from '@angular/common';
 
 // Angular Material
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,7 +19,11 @@ import {
   MdDialogModule,
   MdTabsModule,
   MdSelectModule,
-  MdAutocompleteModule
+  MdDatepickerModule,
+  MdNativeDateModule,
+  MdCheckboxModule,
+  MdChipsModule,
+  MatListModule
 } from '@angular/material';
 
 // page
@@ -30,10 +34,14 @@ import { DbService } from './db-service.service';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { InterpreterComponent } from './interpreter/interpreter.component';
-import { InsuranceComponent, InsuranceDialogComponent } from './insurance/insurance.component';
+import { InsuranceComponent } from './insurance/insurance.component';
 import { PatientComponent } from './patient/patient.component';
-import { PatinetImportComponent, PatientDialogComponent } from './patient/patinet-import/patinet-import.component';
-import { AssignWorkComponent } from './assign-work/assign-work.component';
+import { PatinetImportComponent } from './patient/patinet-import/patinet-import.component';
+import { AssignWorkComponent, InterpreterDialogComponent } from './assign-work/assign-work.component';
+import { SubmitWorkComponent, SubmitDialogComponent } from './submit-work/submit-work.component';
+import { WorkStatusComponent, WorkCommentDialogComponent } from './work-status/work-status.component';
+import { ReportMenuComponent } from './report-menu/report-menu.component';
+import { ReportPatientListComponent } from './report-menu/report-patient-list/report-patient-list.component';
 
 @NgModule({
   declarations: [
@@ -41,11 +49,16 @@ import { AssignWorkComponent } from './assign-work/assign-work.component';
     LoginComponent,
     InterpreterComponent,
     InsuranceComponent,
-    InsuranceDialogComponent,
     PatientComponent,
     PatinetImportComponent,
-    PatientDialogComponent,
-    AssignWorkComponent
+    AssignWorkComponent,
+    InterpreterDialogComponent,
+    SubmitWorkComponent,
+    SubmitDialogComponent,
+    WorkStatusComponent,
+    WorkCommentDialogComponent,
+    ReportMenuComponent,
+    ReportPatientListComponent
   ],
   imports: [
     BrowserModule,
@@ -63,10 +76,18 @@ import { AssignWorkComponent } from './assign-work/assign-work.component';
     MdDialogModule,
     MdTabsModule,
     MdSelectModule,
-    MdAutocompleteModule,
-    CdkTableModule
+    MdDatepickerModule,
+    MdNativeDateModule,
+    MdCheckboxModule,
+    MdChipsModule,
+    MatListModule
+    // CdkTableModule
   ],
-  entryComponents: [InsuranceDialogComponent, PatientDialogComponent],
+  entryComponents: [
+    InterpreterDialogComponent,
+    SubmitDialogComponent,
+    WorkCommentDialogComponent
+  ],
   providers: [AppService, DbService],
   bootstrap: [AppComponent]
 })

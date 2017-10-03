@@ -1,0 +1,30 @@
+<h2 class="title">Submit your work</h2>
+<p class="caption">This is for let Interpreter submit and make comment in work ...</p>
+
+<md-form-field>
+  <input mdInput name="dtpSelected" [mdDatepicker]="dtpStart" placeholder="Pick a Date" readonly (click)="dtpStart.open()"
+    onkeydown="return false" [(ngModel)]="currentDate" (dateChange)="refreshData()">
+  <md-datepicker-toggle mdSuffix [for]="dtpStart"></md-datepicker-toggle>
+  <md-datepicker touchUi="true" #dtpStart></md-datepicker>
+</md-form-field>
+
+<table>
+  <tr>
+    <th>HN</th>
+    <th>Patient Name</th>
+    <th>Nationality</th>
+    <th>Ward</th>
+    <th>Room</th>
+    <th>Status</th>
+    <th>Add Comment</th>
+  </tr>
+  <tr *ngFor="let work of listWorks">
+    <td>{{work.patientHN}}</td>
+    <td>{{work.patientName}}</td>
+    <td>{{work.nationality}}</td>
+    <td>{{work.admitWard}}</td>
+    <td>{{work.admitRoom}}</td>
+    <td><span *ngIf="work.finishedFlg == 1" style="color:green;"><md-icon>beenhere</md-icon> Done!</span></td>
+    <td><button md-raised-button (click)="openInterpreterDialog(work)"><md-icon>speaker_notes</md-icon></button></td>
+  </tr>
+</table>

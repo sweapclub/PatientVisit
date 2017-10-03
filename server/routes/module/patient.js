@@ -15,12 +15,14 @@ router.get('/patientImport', function (req, res) {
   else true
   end as alreadyInserted
   FROM tbcurrent_onward_8am as ow8am left join tbmatch_insurance_patient as mat on mat.patientHN = ow8am.patientHN
-  where admitDate = date(now())`,
+  where assignDate = date(now())`,
     function (err, result) {
       if (err) throw err;
       res.send(result);
     });
 })
+
+
 
 
 module.exports = router;

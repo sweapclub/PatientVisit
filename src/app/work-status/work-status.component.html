@@ -1,0 +1,32 @@
+<h2 class="title">Work Status</h2>
+<p class="caption">This is for let Manager check work status ...</p>
+
+<md-form-field>
+  <input mdInput name="dtpSelected" [mdDatepicker]="dtpStart" placeholder="Pick a Date" readonly (click)="dtpStart.open()"
+    onkeydown="return false" [(ngModel)]="currentDate" (dateChange)="refreshData()">
+  <md-datepicker-toggle mdSuffix [for]="dtpStart"></md-datepicker-toggle>
+  <md-datepicker touchUi="true" #dtpStart></md-datepicker>
+</md-form-field>
+
+<table>
+  <tr>
+    <th>HN</th>
+    <th>Patient Name</th>
+    <th>Nationality</th>
+    <th>Ward</th>
+    <th>Room</th>
+    <th>Interpreter</th>
+    <th>Status</th>
+    <th>Comment</th>
+  </tr>
+  <tr *ngFor="let work of workStatus">
+    <td>{{work.patientHN}}</td>
+    <td>{{work.patientName}}</td>
+    <td>{{work.nationality}}</td>
+    <td>{{work.admitWard}}</td>
+    <td>{{work.admitRoom}}</td>
+    <td>{{work.InterpreterName}}</td>
+    <td><span *ngIf="work.finishedFlg == 1" style="color:green;"><md-icon>beenhere</md-icon> Done!</span></td>
+    <td><button md-raised-button (click)="openInterpreterDialog(work)"><md-icon>speaker_notes</md-icon></button></td>
+  </tr>
+</table>

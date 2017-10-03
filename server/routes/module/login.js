@@ -21,7 +21,7 @@ const router = express.Router();
 router.post('/login', function (req, res) {
   if (!req.body) return res.sendStatus(400)
   const obj = req.body;
-  mysql.query('select FullName,Department,UserType from tbuserlogin where UserName = ? and Password = ?', [obj.userName, obj.password], (err, result) => {
+  mysql.query('select UserName, FullName,Department,UserType from tbuserlogin where UserName = ? and Password = ?', [obj.userName, obj.password], (err, result) => {
     if (err) throw err;
     res.send(result);
   })

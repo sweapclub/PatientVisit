@@ -1,9 +1,12 @@
 import { Component, Inject, OnInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
 import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
-import { Observable } from 'rxjs/Observable';
+// import { Observable } from 'rxjs/Observable';
 import { NgModule } from '@angular/core';
 
-import { AppService, ServiceDataSource, ServiceDatabase } from '../app-service.service';
+// import { AppService, ServiceDataSource, ServiceDatabase } from '../app-service.service';
+import { InsuranceTable } from '../model/insuranceTable';
+import { DbService } from '../db-service.service';
+
 
 @Component({
   selector: 'app-insurance',
@@ -11,44 +14,50 @@ import { AppService, ServiceDataSource, ServiceDatabase } from '../app-service.s
   styleUrls: ['./insurance.component.css']
 })
 export class InsuranceComponent implements OnInit, OnDestroy {
-  objForm: string;
+  // objForm: string;
 
-  displayedColumns = ['Name', 'Nationality', 'Website'];
-  dataSource: ServiceDataSource | null;
-  @ViewChild('filter') filter: ElementRef;
+  // displayedColumns = ['Name', 'Nationality', 'Website'];
+  // dataSource: ServiceDataSource | null;
+  // @ViewChild('filter') filter: ElementRef;
 
   sstTable;
-  sstOparation;
-  constructor(public dialog: MdDialog, private appService: AppService) {
-    this.appService.getInsuranceTable();
+  insuranceTable: InsuranceTable[];
+  // sstOparation;
+  constructor(public dialog: MdDialog, private dbService: DbService) {
   }
 
   ngOnInit() {
 
-    this.sstTable = this.appService.qrySuccess.subscribe(
-      () => {
-        this.dataSource = this.appService.dataSource;
-        Observable.fromEvent(this.filter.nativeElement, 'keyup')
-          .debounceTime(150)
-          .distinctUntilChanged()
-          .subscribe(() => {
-            if (!this.dataSource) { return; }
-            this.dataSource.filter = this.filter.nativeElement.value;
-          });
+    this.sstTable = this.dbService.getInsuranceTable().subscribe(data => {
+      if (data.length !== 0) {
+        this.insuranceTable = data;
       }
-    );
+    })
 
-    this.sstOparation = this.appService.insuranceChanged.subscribe(
-      () => {
-        this.appService.getInsuranceTable();
-      }
-    );
+    // this.sstTable = this.appService.qrySuccess.subscribe(
+    //   () => {
+    //     this.dataSource = this.appService.dataSource;
+    //     Observable.fromEvent(this.filter.nativeElement, 'keyup')
+    //       .debounceTime(150)
+    //       .distinctUntilChanged()
+    //       .subscribe(() => {
+    //         if (!this.dataSource) { return; }
+    //         this.dataSource.filter = this.filter.nativeElement.value;
+    //       });
+    //   }
+    // );
+
+    // this.sstOparation = this.appService.insuranceChanged.subscribe(
+    //   () => {
+    //     this.appService.getInsuranceTable();
+    //   }
+    // );
 
   }
 
   ngOnDestroy() {
     this.sstTable.unsubscribe();
-    this.sstOparation.unsubscribe();
+    // this.sstOparation.unsubscribe();
   }
 
   // openAddDialog(Flg) {
@@ -97,44 +106,44 @@ export class InsuranceComponent implements OnInit, OnDestroy {
 }
 
 
-// ///////////////////////////////
-@Component({
-  selector: 'app-insurance-dialog',
-  templateUrl: './insurance-dialog.component.html'
-})
-export class InsuranceDialogComponent {
-  insuranceData;
-  constructor(public dialogRef: MdDialogRef<InsuranceDialogComponent>,
-    @Inject(MD_DIALOG_DATA) public data: any) {
+// // ///////////////////////////////
+// @Component({
+//   selector: 'app-insurance-dialog',
+//   templateUrl: './insurance-dialog.component.html'
+// })
+// export class InsuranceDialogComponent {
+//   insuranceData;
+//   constructor(public dialogRef: MdDialogRef<InsuranceDialogComponent>,
+//     @Inject(MD_DIALOG_DATA) public data: any) {
 
-  }
+//   }
 
-  callBackObject(objForm) {
-    if (objForm.invalid) {
-      return;
-    }
-    if (this.data) {
-      this.insuranceData = {
-        insuranceID: this.data.insuranceID,
-        insuranceName: objForm.value.name,
-        insuranceNationality: objForm.value.nationality,
-        insuranceEmail: objForm.value.email,
-        insuranceTelephone: objForm.value.telephone,
-        insuranceDescription: objForm.value.description
-      };
-    } else {
-      this.insuranceData = {
-        insuranceID: 'NULL',
-        insuranceName: objForm.value.name,
-        insuranceNationality: objForm.value.nationality,
-        insuranceEmail: objForm.value.email,
-        insuranceTelephone: objForm.value.telephone,
-        insuranceDescription: objForm.value.description
-      };
-    }
+//   callBackObject(objForm) {
+//     if (objForm.invalid) {
+//       return;
+//     }
+//     if (this.data) {
+//       this.insuranceData = {
+//         insuranceID: this.data.insuranceID,
+//         insuranceName: objForm.value.name,
+//         insuranceNationality: objForm.value.nationality,
+//         insuranceEmail: objForm.value.email,
+//         insuranceTelephone: objForm.value.telephone,
+//         insuranceDescription: objForm.value.description
+//       };
+//     } else {
+//       this.insuranceData = {
+//         insuranceID: 'NULL',
+//         insuranceName: objForm.value.name,
+//         insuranceNationality: objForm.value.nationality,
+//         insuranceEmail: objForm.value.email,
+//         insuranceTelephone: objForm.value.telephone,
+//         insuranceDescription: objForm.value.description
+//       };
+//     }
 
-    objForm.resetForm();
+//     objForm.resetForm();
 
-    this.dialogRef.close(this.insuranceData)
-  }
-}
+//     this.dialogRef.close(this.insuranceData)
+//   }
+// }

@@ -1,0 +1,77 @@
+<button md-raised-button (click)="backToMainReport()" color="warn" class="right-btn">back to report menu</button>
+<H4>
+  Patient List Report
+</H4>
+
+<md-form-field>
+  <input mdInput name="dtpSelected" [mdDatepicker]="dtpStart" placeholder="Pick a Date" readonly (click)="dtpStart.open()"
+    onkeydown="return false" [(ngModel)]="currentDate" (dateChange)="refreshData()">
+  <md-datepicker-toggle mdSuffix [for]="dtpStart"></md-datepicker-toggle>
+  <md-datepicker touchUi="true" #dtpStart></md-datepicker>
+</md-form-field>
+
+
+<table>
+  <tr>
+    <th style="width:200px;">Ward</th>
+    <th style="width:36px;">Room</th>
+    <th>Detail</th>
+  </tr>
+  <tr>
+    <td>LobbyE</td>
+    <td>B9204</td>
+    <td>
+      <p>HN: 02-10-043819
+        <br>
+        <Strong>MR.RAINER BLUEMBACH</Strong>
+        <br>Age: 72Y
+        <br>Nationality: ICELANDIC
+        <br>Interpreter: Bogdan
+        <br>Insurance: AXA(Thailand)
+        <br>Insurance Remark : To print the Roi and gibe to coordinator once patient is conscious.
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td>LobbyE</td>
+    <td>B9204</td>
+    <td>
+      <p>HN: 02-10-043819
+        <br>
+        <Strong>MR.RAINER BLUEMBACH</Strong>
+        <br>Age: 72Y
+        <br>Nationality: ICELANDIC
+        <br>Interpreter: Bogdan
+        <br>Insurance: AXA(Thailand)
+        <br>Insurance Remark : To print the Roi and gibe to coordinator once patient is conscious.
+      </p>
+    </td>
+  </tr>
+</table>
+
+<font color="#3333ff">Received GOP from Euro-Center ( TH), Covering and Validity from 19/09/2017 including Ground Ambulance due to Chest pain,
+  unspecified.</font> We called to your ambulance office to pick up patient from home to hospital. Kindly provide medical
+report and ThaiVivat claim form and lab result to us once available.
+<font color="#3333ff">Please noted that patient has coverage for IPD only </font>and she has no passport or policy card with her.
+
+
+
+SELECT follow_desc, pat.patient_hn, ins_name
+FROM (
+
+SELECT inscase_id, ins_id, pat_id
+FROM insurance_case
+WHERE date( inscase_lastDate ) = date( now( ) )
+) AS insCase
+LEFT JOIN (
+
+SELECT inscase_id, follow_desc, follow_id
+FROM follow
+WHERE date( follow_date ) = date( now( ) )
+) AS follow ON follow.inscase_id = insCase.inscase_id
+INNER JOIN patient AS pat ON inscase.pat_id = pat.patient_id
+LEFT JOIN insurance AS insu ON insu.ins_id = insCase.ins_id
+GROUP BY patient_hn
+HAVING max( follow_id )
+ORDER BY patient_hn
+LIMIT 0 , 30

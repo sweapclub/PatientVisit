@@ -1,42 +1,15 @@
 <h2 class="title">Insurance Company</h2>
 <p class="caption">This is page for show insurance company lists ...</p>
 
-<!-- <button md-raised-button (click)="openAddDialog('Insert')"><md-icon>note_add</md-icon> New Insurance</button>
-<br>
-<br> -->
-
-<div class=" container mat-elevation-z8">
-  <div class=" header">
-    <md-input-container floatPlaceholder="never">
-      <input mdInput #filter placeholder="Filter Insurance">
-    </md-input-container>
-  </div>
-
-  <md-table #table [dataSource]="dataSource">
-
-    <ng-container cdkColumnDef="Name">
-      <md-header-cell *cdkHeaderCellDef> Name </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.ins_name}} </md-cell>
-    </ng-container>
-
-    <ng-container cdkColumnDef="Nationality">
-      <md-header-cell *cdkHeaderCellDef> Nationality </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.ins_branch_region}} </md-cell>
-    </ng-container>
-
-    <ng-container cdkColumnDef="Website">
-      <md-header-cell *cdkHeaderCellDef> Website </md-header-cell>
-      <md-cell *cdkCellDef="let row"> <a target="_blank" href={{row.ins_website}}>{{row.ins_website}} </a>  </md-cell>
-    </ng-container>
-
-    <!-- <ng-container cdkColumnDef="Manage">
-      <md-header-cell *cdkHeaderCellDef> Manage </md-header-cell>
-      <md-cell *cdkCellDef="let row">
-        <button md-raised-button (click)="openEditDialog(row)"><md-icon>edit</md-icon>Edit</button>
-      </md-cell>
-    </ng-container> -->
-
-    <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
-    <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
-  </md-table>
-</div>
+<table>
+  <tr>
+    <th>Company Name</th>
+    <th>Nationality</th>
+    <th>Website</th>
+  </tr>
+  <tr *ngFor="let insurance of insuranceTable">
+    <td>{{insurance.ins_name}}</td>
+    <td>{{insurance.ins_branch_region}}</td>
+    <td>{{insurance.ins_website}}</td>
+  </tr>
+</table>

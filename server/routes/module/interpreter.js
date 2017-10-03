@@ -2,6 +2,10 @@ const mysql = require('../mysql');
 const express = require('express');
 const router = express.Router();
 
+router.get('/',function (req,res) {
+  res.send("Hello Interpreter");
+})
+
 router.get('/InterpreterStatus', function (req, res) {
   mysql.query(`select * from (
               SELECT FullName , IFNULL( GROUP_CONCAT( Lname SEPARATOR ', ' ) , '' ) AS Language,

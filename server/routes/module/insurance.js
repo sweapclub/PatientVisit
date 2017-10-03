@@ -2,16 +2,6 @@ const mysql = require('../mysql');
 const express = require('express');
 const router = express.Router();
 
-// router.get('/insuranceTable', function (req, res) {
-//   mysql.query(`SELECT insuranceID,insuranceName,insuranceNationality,insuranceEmail,
-//     insuranceTelephone,insuranceDescription,insuranceName as Search
-//     FROM tbinsurance
-//     order by insuranceName`, function (err, result) {
-//       if (err) throw err;
-//       res.send(result);
-//     });
-// })
-
 router.get('/insuranceTable', function (req, res) {
   mysql.query(`SELECT ins_name, ins_branch_region, ins_website,ins_name as Search
   FROM  insurance.insurance

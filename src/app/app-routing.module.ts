@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-// import { FormsModule } from '@angular/forms';
-// import { CommonModule } from '@angular/common';
-
 import { AppComponent } from './app.component';
 
 import { LoginComponent } from './login/login.component';
@@ -11,23 +8,28 @@ import { InterpreterComponent } from './interpreter/interpreter.component';
 import { InsuranceComponent } from './insurance/insurance.component';
 import { PatientComponent } from './patient/patient.component';
 import { AssignWorkComponent } from './assign-work/assign-work.component';
+import { SubmitWorkComponent } from './submit-work/submit-work.component';
+import { WorkStatusComponent } from './work-status/work-status.component';
+import { ReportMenuComponent } from './report-menu/report-menu.component';
 
-// import { HomeComponent } from './home/home.component';
+import { ReportPatientListComponent } from './report-menu/report-patient-list/report-patient-list.component';
 
 const routes = [
-  // { path: '', component: AppComponent },
   { path: 'login', component: LoginComponent },
   { path: 'interpreter', component: InterpreterComponent },
   { path: 'insurance', component: InsuranceComponent },
   { path: 'patient', component: PatientComponent },
-  { path: 'assignWork', component: AssignWorkComponent},
-  { path: '**', redirectTo: '/' }
-  // { path: 'Patient', component: PatientComponent}
+  { path: 'assignWork', component: AssignWorkComponent },
+  { path: 'submitWork', component: SubmitWorkComponent },
+  { path: 'workStatus', component: WorkStatusComponent },
+  { path: 'report', component: ReportMenuComponent},
+  { path: 'reportPatientList', component: ReportPatientListComponent },
+  { path: '**', redirectTo: '/' },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, { useHash: true })
   ],
   exports: [
     RouterModule

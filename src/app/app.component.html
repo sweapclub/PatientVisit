@@ -1,18 +1,19 @@
 <md-toolbar color="primary" class="mat-elevation-z5">
-   <button md-icon-button (click)="sidenav.toggle()" [disabled]="disabledNav">
+  <button md-icon-button (click)="sidenav.toggle()" [disabled]="disabledNav">
       <md-icon>view_headline</md-icon>
     </button>
   <span>{{ title }}</span>
 
   <span class="pushRight"></span>
-  <span style="cursor:pointer;"><md-icon>exit_to_app</md-icon> logout</span>
+  <span *ngIf="!disabledNav">Sign in as {{login?.FullName}} </span>
+  <span *ngIf="!disabledNav" style="cursor:pointer;" (click)="logOut()"><md-icon>exit_to_app</md-icon> logout</span>
 
 </md-toolbar>
 
-  <md-sidenav-container class="sidenav-container" style="position:fixed;">
+<md-sidenav-container class="sidenav-container" style="position:fixed;">
   <md-sidenav #sidenav class="sidenav">
     <md-list>
-      <h2 class="mat-title" style="  text-align: center;">Menu Link</h2>
+      <h2 class="mat-title" style="text-align: center;">Menu Link</h2>
       <ng-container *ngFor="let link of links">
         <a md-button (click)="sidenav.toggle()" [routerLink]=link.path> {{ link.name }} </a>
         <br />
@@ -20,13 +21,9 @@
     </md-list>
   </md-sidenav>
 
-  <md-card>
-  <div class="docs-component-viewer-content" style="margin-top:64px;">
-    <router-outlet></router-outlet>
-  </div>
-</md-card>
+  <md-card style=" margin-top:64px;">
+    <div class="docs-component-viewer-content">
+      <router-outlet></router-outlet>
+    </div>
+  </md-card>
 </md-sidenav-container>
-
-
-
-

@@ -10,6 +10,10 @@ const apiInsurance = require('./server/routes/module/insurance');
 const apiInterpreter = require('./server/routes/module/interpreter');
 const apiPatient = require('./server/routes/module/patient');
 const apiAssignWork = require("./server/routes/module/assignwork");
+const apiSubmitWork = require('./server/routes/module/submitWork');
+const apiWorkStatus = require('./server/routes/module/workStatus');
+const apiImportCurrentOnWard = require('./server/routes/module/importCurrentOnWard');
+const apiReport = require('./server/routes/module/report');
 
 const app = express();
 
@@ -35,6 +39,10 @@ app.use('/api/insurance', apiInsurance);
 app.use('/api/interpreter', apiInterpreter);
 app.use('/api/patient', apiPatient);
 app.use('/api/assignWork', apiAssignWork);
+app.use('/api/submitWork', apiSubmitWork);
+app.use('/api/workStatus', apiWorkStatus);
+app.use('/api/importCurrentOnWard', apiImportCurrentOnWard);
+app.use('/api/report',apiReport);
 
 // Catch all other routes and return the index file
 app.get('/AssignWorkInterpreter', (req, res) => {

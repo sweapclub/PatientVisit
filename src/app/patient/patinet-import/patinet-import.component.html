@@ -5,11 +5,40 @@
 <!-- <button md-raised-button (click)="importPatient()">Update Patient's Insurance </button> -->
 
 <br>
-<br>
-<div class="container mat-elevation-z8">
-  <!-- <div class="header">
 
-  </div> -->
+<table>
+  <tr>
+    <th>HN</th>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Nationality</th>
+    <th>Ward</th>
+    <th>Room</th>
+    <th>Insurance Name</th>
+    <th>Edit Insurance</th>
+  </tr>
+  <tr *ngFor="let patient of patientImport; let i = index">
+    <td>{{patient.patientHN}}</td>
+    <td>{{patient.patientName}}</td>
+    <td>{{patient.patientAge}}</td>
+    <td>{{patient.nationality}}</td>
+    <td>{{patient.admitWard}}</td>
+    <td>{{patient.admitRoom}}</td>
+    <td>{{patient.insuranceName}}</td>
+    <td>
+      <button md-raised-button (click)='openInsuranceDialog({
+            index: i,
+            insuranceName: patient.insuranceName,
+            patientHN: patient.patientHN,
+            alreadyInserted: patient.alreadyInserted
+          })'><md-icon>edit</md-icon>
+          </button>
+    </td>
+  </tr>
+</table>
+
+<!-- <div class="container mat-elevation-z8">
+
 
    <md-table #table [dataSource]="dataSource">
 
@@ -53,4 +82,4 @@
     <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
     <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
   </md-table>
-</div>
+</div> -->

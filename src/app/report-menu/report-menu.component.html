@@ -1,0 +1,14 @@
+<h2 class="title">
+  Report Menu</h2>
+
+
+<md-nav-list>
+  <md-list-item *ngFor="let report of linkReport" (click)="redirect(report.path)">
+    <button md-icon-button>
+          <md-icon>send</md-icon>
+        </button>
+    <span>{{report.name}}</span>
+  </md-list-item>
+</md-nav-list>
+
+<!-- <button md-button (click)="download()">download </button> -->

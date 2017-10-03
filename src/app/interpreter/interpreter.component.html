@@ -1,30 +1,29 @@
+
 <h2 class="title">Interpreter Status</h2>
 <p class="caption">This is for check Interpreter is available or free ...</p>
-<div class="container mat-elevation-z8">
-  <div class="header">
-    <md-input-container floatPlaceholder="never">
-      <input mdInput #filter placeholder="Filter Interpreter">
-    </md-input-container>
-  </div>
 
-  <md-table #table [dataSource]="dataSource">
+<table>
+  <tr>
+    <th>Full name</th>
+    <th>Language</th>
+    <th>Status</th>
+  </tr>
 
-    <ng-container cdkColumnDef="FullName">
-      <md-header-cell *cdkHeaderCellDef> Full Name </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.FullName}} </md-cell>
-    </ng-container>
+  <tr *ngFor="let interpreter of interpreters">
+    <td>{{interpreter.FullName}}</td>
+    <td>{{interpreter.Language}}</td>
 
-    <ng-container cdkColumnDef="Language">
-      <md-header-cell *cdkHeaderCellDef> Language </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.Language}} </md-cell>
-    </ng-container>
+    <td [ngSwitch]="interpreter.Status">
+        <span *ngSwitchCase="'Available'" style="color:green">
+          <md-icon>location_on</md-icon>  {{interpreter.Status}}
+        </span>
+        <span *ngSwitchCase="'Translate'" style="color: #1e88e5">
+          <md-icon>question_answer</md-icon>  {{interpreter.Status}}
+        </span>
+        <span *ngSwitchCase="'Absent'" style="color:#607d8b">
+          <md-icon>local_hotel</md-icon>  {{interpreter.Status}}
+        </span>
+    </td>
+  </tr>
+</table>
 
-    <ng-container cdkColumnDef="Status">
-      <md-header-cell *cdkHeaderCellDef> Status </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.Status}} </md-cell>
-    </ng-container>
-
-    <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
-    <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
-  </md-table>
-</div>
