@@ -44,6 +44,11 @@ app.use('/api/workStatus', apiWorkStatus);
 app.use('/api/importCurrentOnWard', apiImportCurrentOnWard);
 app.use('/api/report',apiReport);
 
+app.use(function(err,req,res,next) {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+})
+
 // Catch all other routes and return the index file
 app.get('/AssignWorkInterpreter', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'));

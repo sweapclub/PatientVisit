@@ -37,8 +37,6 @@ export class AppComponent implements OnInit {
     this.login = this.appService.getLoginCookie();
     let cookie = this.login;
 
-
-
     this.appService.loginChanged.subscribe(
       () => {
         cookie = this.appService.getLoginCookie();
@@ -48,7 +46,6 @@ export class AppComponent implements OnInit {
         this.disabledNav = this.appService.checkLogin();
       }
     );
-
   }
 
   logOut() {
